@@ -1,0 +1,15 @@
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  LayerBase:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: layers/base
+
+  ParameterLayerArnBase:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /Golden/Layer/Base
+      Type: String
+      Value: !Ref LayerBase
+
