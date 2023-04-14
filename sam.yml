@@ -9,7 +9,18 @@ Resources:
   ParameterLayerArnBase:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: /Golden/Layer/Base
+      Name: /LuciferousDevIoIndex/Layer/Base
       Type: String
       Value: !Ref LayerBase
 
+  LayerFeedparser:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: layers/feedparser
+
+  ParameterLayerArnFeedparser:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /LuciferousDevIoIndex/Layer/Feedparser
+      Type: String
+      Value: !Ref LayerFeedparser

@@ -10,7 +10,8 @@ permissions:
   contents: read
 
 env:
-  SAM_ARTIFACT_BUCKET: ${{ secrets.ARTIFACT_BUCKET }}
+  SAM_ARTIFACT_BUCKET: ${{ vars.BUCKET_NAME_SAM_ARTIFACT }}
+  ROLE_ARN_CLOUDFORMATION_DEPLOY: ${{ vars.ROLE_ARN_CLOUDFORMATION_DEPLOY }}
 
 jobs:
   deploy:
@@ -23,7 +24,7 @@ jobs:
           python-version: 3.9.13
       - uses: aws-actions/configure-aws-credentials@v1-node16
         with:
-          role-to-assume: ${{ secrets.ARN_IAM_ROLE }}
+          role-to-assume: ${{ vars.ROLE_ARN_GITHUB_ACTION_CLOUDFORMATION_DEPLOY }}
           aws-region: ap-northeast-1
       - uses: aws-actions/setup-sam@v2
       - run: pip install poetry

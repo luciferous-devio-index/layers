@@ -1,13 +1,14 @@
 SHELL = /usr/bin/env bash -xeuo pipefail
 
-stack_name:=""
+stack_name:=luciferous-devio-index-layers
 
 clean:
 	find layers -type d -name python | xargs rm -rf
 	find layers -type f -name requirements.txt | xargs rm -f
 
-build: 
-	./build.sh --name base --arch amd64
+build:
+	./build.sh --name base --arch arm64
+	./build.sh --name feedparser --arch arm64
 
 package:
 	sam package \
@@ -20,6 +21,7 @@ deploy:
 	sam deploy \
 		--stack-name $(stack_name) \
 		--template-file template.yml \
+		--role-arn ${ROLE_ARN_CLOUDFORMATION_DEPLOY} \
 		--no-fail-on-empty-changeset
 
 .PHONY: \
