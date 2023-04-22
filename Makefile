@@ -9,6 +9,7 @@ clean:
 build:
 	./build.sh --name base --arch arm64
 	./build.sh --name feedparser --arch arm64
+	./build.sh --name bs4 --arch arm64
 
 package:
 	sam package \
@@ -24,9 +25,15 @@ deploy:
 		--role-arn ${ROLE_ARN_CLOUDFORMATION_DEPLOY} \
 		--no-fail-on-empty-changeset
 
+describe:
+	aws cloudformation describe-stacks \
+		--stack-name $(stack_name) \
+		--query Stacks[0].Outputs
+
 .PHONY: \
 	clean \
 	build \
 	package \
-	deploy
+	deploy \
+	describe
 

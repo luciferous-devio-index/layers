@@ -24,3 +24,16 @@ Resources:
       Name: /LuciferousDevIoIndex/Layer/Feedparser
       Type: String
       Value: !Ref LayerFeedparser
+
+  LayerBs4:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: layers/bs4
+
+  ParameterLayerArnBs4:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /LuciferousDevIoIndex/Layer/Bs4
+      Type: String
+      Value: !Ref LayerBs4
+
