@@ -37,3 +37,14 @@ Resources:
       Type: String
       Value: !Ref LayerBs4
 
+  LayerJinja:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: layers/jinja
+
+  ParameterLayerArnJinja:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /LuciferousDevIoIndex/Layer/Jinja
+      Type: String
+      Value: !Ref LayerJinja

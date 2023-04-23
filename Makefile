@@ -10,6 +10,7 @@ build:
 	./build.sh --name base --arch arm64
 	./build.sh --name feedparser --arch arm64
 	./build.sh --name bs4 --arch arm64
+	./build.sh --name jinja --arch arm64
 
 package:
 	sam package \
